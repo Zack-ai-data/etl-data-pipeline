@@ -1,10 +1,15 @@
-# mrdiy-junior-data-engineer-assessment
-Data transformation assessment for MR D.I.Y. Junior Data Engineer role, including SQL and Python solutions for ETL and pivot table generation.
-
 # MR D.I.Y. Junior Data Engineer Assessment
+# Junior Data Engineer Technical Assessment  
+**Candidate:** Chong Zhao Cheng (Zack)  
+**Company:** MR D.I.Y. Trading Sdn Bhd  
+**Section 2:** Technical Knowledge – Data Transformation using SQL & Python
 
-This repository contains my complete submission for the **MR D.I.Y. Junior Data Engineer Take-Home Assessment**.  
-It covers data transformation using **SQL** and **Python**, following the requirements provided in the assessment brief.
+---
+
+## Overview
+This repository includes work for the **SQL** and **Python** technical tests, along with their respective scripts, documentation and outputs.
+Both scripts independently transform the raw dataset (`sql_test-raw`) into the expected output format (`sql_test-expected`),  
+calculating the required business metrics and presenting them in a structured table.
 
 ---
 
@@ -12,6 +17,23 @@ It covers data transformation using **SQL** and **Python**, following the requir
 
 Transform the raw dataset (`sql_test-raw` in **excel_sample_data_de.xlsx**) into the expected pivot table format (`sql_test-expected`),  
 by performing all metric calculations and transformations using **SQL** and **Python** independently.
+
+---
+
+## 🗂️ Dataset Description
+
+**Input file:** `excel_sample_data_de.xlsx`  
+**Sheet:** `sql_test-raw`
+
+| Column Name | Description |
+|--------------|-------------|
+| `month` | Transaction month (in Excel date format displayed as `Jan-25`) |
+| `product` | Product name |
+| `store_code` | Store identifier |
+| `category` | Product category (e.g. Beverage, Snack, Dairy) |
+| `sales_qty` | Quantity sold |
+| `sales_amt` | Total sales amount |
+| `sales_cost` | Total cost of sales |
 
 ---
 
@@ -51,7 +73,12 @@ by performing all metric calculations and transformations using **SQL** and **Py
 
 ---
 
-## ⚠️ Clarification on Metrics
+## ⚠️ Notes & Clarifications on Metrics
+
+Although the assessment requirements mention four metrics
+(profit, sales qty contribution, sales amt contribution, profit contribution),
+the reference file sql_test-expected also includes sales cost contribution by category.
+Both SQL and Python implementations include this metric for completeness.
 
 > The original assessment brief listed four required metrics:
 > 1. Profit  
@@ -75,24 +102,13 @@ by performing all metric calculations and transformations using **SQL** and **Py
 > - **SQL Output:** Flattened column names such as `Jan_25_sales_qty_contribution_by_category`  
 > - **Python Output:** Multi-level pivot table (month on top of metrics), as shown in `sql_test-expected (Python).xlsx`  
 >
+> Specifically, Due to differences between SQL and Excel pivot formatting:
+> 
+> The SQL output presents month-specific columns such as Jan_25_sales_qty_contribution_by_category, Feb_25_…, etc.
+> The Python output mirrors the Excel pivot layout with month headers (Jan-25, Feb-25, …) grouped over the four metrics.
+> 
 > Both formats maintain the **same calculations and metric accuracy** as the provided `sql_test-expected` reference.
-
-Notes & Clarifications
-
-Although the assessment requirements mention four metrics
-(profit, sales qty contribution, sales amt contribution, profit contribution),
-the reference file sql_test-expected also includes sales cost contribution by category.
-👉 Both SQL and Python implementations include this metric for completeness.
-
-Due to differences between SQL and Excel pivot formatting:
-
-The SQL output presents month-specific columns such as
-Jan_25_sales_qty_contribution_by_category, Feb_25_…, etc.
-
-The Python output mirrors the Excel pivot layout with month headers
-(Jan-25, Feb-25, …) grouped over the four metrics.
-
-All calculated values are identical and verified; only the table layout differs.
+> Hence, all calculated values are identical and verified and only the table layout differs.
 
 ---
 
@@ -106,7 +122,7 @@ For any clarification, please refer to this repository or contact me directly.
 
 ---
 
-**Author:** Zack Chong
+**Author:** Zack Chong Zhao Cheng
 **Date Submitted:** 9th November 2025  
 **Email:** chongzhaocheng06@gmail.com
 **Eduaction:** Bachelor of Science (Hons) Statistical Data Modelling — Sunway University  
