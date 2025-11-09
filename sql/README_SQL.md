@@ -59,7 +59,7 @@ Each month is expanded horizontally, grouping the four metrics in order:
 
 ---
 
-### ⚙️ Notes
+### ⚙️ Execution & Export Notes
 
 - You may export the result table from **MySQL Workbench** using:  
   `Query > Export Results > CSV File (.csv)`
@@ -72,8 +72,10 @@ Each month is expanded horizontally, grouping the four metrics in order:
 
 All numeric results are rounded to 2 decimal places for consistency with Excel output.
 
-### **Note on Metric Display Format**
+---
 
-In the reference Excel file (`sql_test-expected`), contribution metrics are shown as percentages (e.g., **45%**).  
-In the SQL output, these same values are represented in decimal form (e.g., **0.45**) for accurate numeric computation and aggregation.  
-Both formats represent identical values which only the display format differs.
+### 📊 Note on Metric Display Format
+
+In the reference Excel file (`sql_test-expected`), contribution metrics are displayed as percentages (e.g., **45%**).  
+In the SQL output, these same values are represented in decimal form (e.g., **0.45**) to maintain numeric precision during calculations and aggregations.  
+Both formats represent the same underlying values which only the display format differs.
