@@ -90,12 +90,12 @@ mrdiy-junior-data-engineer-assessment/
 
 ---
 
-## ⚠️ Notes & Clarifications on Metrics
+## ⚙️ Clarifications on Metrics
 
-Although the assessment requirements mention four metrics
-(profit, sales qty contribution, sales amt contribution, profit contribution),
-the reference file sql_test-expected also includes sales cost contribution by category.
-Both SQL and Python implementations include this metric for completeness.
+Although the assessment requirements listed four metrics
+(profit, sales qty contribution by category, sales amt contribution by category, profit contribution by category),
+the provided reference output (`sql_test-expected` in *excel_sample_data_de.xlsx*) also included **Sales Cost Contribution by Category**.
+Therefore, both SQL and Python implementations include this additional metric for completeness and alignment with the expected output.
 
 > The original assessment brief listed four required metrics:
 > 1. Profit  
@@ -103,11 +103,11 @@ Both SQL and Python implementations include this metric for completeness.
 > 3. Sales Amt Contribution by Category  
 > 4. Profit Contribution by Category  
 >
-> However, the provided reference output (`sql_test-expected` in *excel_sample_data_de.xlsx*) also included  
-> **Sales Cost Contribution by Category**.
->
-> To ensure alignment with the expected results, **both SQL and Python transformations include this additional metric**.  
-> This was done intentionally for consistency and completeness.
+> To ensure consistency with the expected Excel reference and maintain calculation integrity, an additional metric was implemented:
+> 
+> 5. Profit Contribution by Category
+
+✅ This ensures all transformation outputs (SQL and Python) fully match the provided reference file and maintain consistency across all methods.
 
 ---
 
@@ -121,8 +121,15 @@ but differ slightly in table layout due to the formatting behavior of each platf
 | SQL | Flattened columns | Jan_25_sales_qty_contribution_by_category, Feb_25_... |
 | Python | Multi-level pivot (month grouped above metrics) | Jan-25 → [sales_qty, sales_amt, sales_cost, profit] |
 
-✅ All calculated values have been verified identical to the reference sql_test-expected.
-The only difference lies in table presentation, not in the underlying data or logic.
+✅ All calculated values have been verified identical to the reference (`sql_test-expected`).
+Only the visual structure differs — the underlying logic and results remain consistent.
+
+> Percentage Display Clarification
+> In the provided Excel reference (`sql_test-expected`), contribution metrics are displayed as percentages (e.g., 45%).
+> In both SQL and Python outputs, these values are represented in decimal form (e.g., 0.45).
+> The numerical values are equivalent which only the formatting differs.
+
+✅ This approach preserves numeric precision during computation and ensures accurate comparisons across systems.
 
 ---
 
