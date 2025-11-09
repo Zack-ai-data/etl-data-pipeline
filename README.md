@@ -127,7 +127,7 @@ Only the visual structure differs — the underlying logic and results remain co
 > Percentage Display Clarification
 > In the provided Excel reference (`sql_test-expected`), contribution metrics are displayed as percentages (e.g., 45%).
 > In both SQL and Python outputs, these values are represented in decimal form (e.g., 0.45).
-> The numerical values are equivalent which only the formatting differs.
+> The numerical values are equivalent where only the formatting differs.
 
 ✅ This approach preserves numeric precision during computation and ensures accurate comparisons across systems.
 
