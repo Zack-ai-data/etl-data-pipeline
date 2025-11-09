@@ -22,14 +22,14 @@ Metrics calculated:
    ```bash
    pip install pandas openpyxl jupyter
 4. Place the file (`excel_sample_data_de.xlsx`) in the same working directory as your notebook.
-5. Open the notebook file named **[Data Transformation (Python).ipynb](python/Data%20Transformation%20(Python).ipynb)**
+5. Open the notebook file named **[Data Transformation (Python).ipynb](Data%20Transformation%20(Python).ipynb)**
 
 ---
 
 ### ▶️ How to Run in Jupyter
 
 1. Launch Jupyter Notebook from your environment.
-2. Open [Data Transformation (Python).ipynb](python/Data%20Transformation%20(Python).ipynb).
+2. Open [Data Transformation (Python).ipynb](Data%20Transformation%20(Python).ipynb).
 3. Run all cells sequentially:
   Click Run All, or
   Press Shift + Enter for each cell.
