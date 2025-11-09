@@ -38,8 +38,8 @@ The final file sql_output-expected (Python).xlsx will be generated in the same f
 
 ---
 
-## Note on Metric Display Format
+### **Note on Metric Display Format**
 
-In the reference Excel file (sql_test-expected), contribution metrics are displayed as percentages (e.g., 45%).
-In this Python output, the same values are represented in decimal form (e.g., 0.45) to preserve numeric precision during calculations.
-Both formats are equivalent — only the display format differs.
+In the reference Excel file (`sql_test-expected`), contribution metrics are displayed as percentages (e.g., **45%**).  
+In this Python output, the same values are represented in decimal form (e.g., **0.45**) to preserve numeric precision during calculations.  
+Both formats are equivalent which only the display format differs.
