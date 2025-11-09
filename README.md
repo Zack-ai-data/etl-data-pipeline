@@ -43,7 +43,7 @@ calculating the required business metrics and presenting them in a structured pi
 
 ## SQL Transformation
 
-- Implemented using **MySQL** (`sql/Data Transformation (SQL).sql`).
+- Implemented using **MySQL** [sql/Data Transformation (SQL).sql](sql/Data%20Transformation%20(SQL).sql).
 - Script includes:
   - Database & table creation  
   - Data insertion  
@@ -57,7 +57,7 @@ calculating the required business metrics and presenting them in a structured pi
 
 ## Python Transformation
 
-- Implemented in **Jupyter Notebook** (`python/Data Transformation (Python).ipynb`).
+- Implemented in **Jupyter Notebook** [python/Data Transformation (Python).ipynb](python/Data%20Transformation%20(Python).ipynb).
 - Uses **pandas** for data manipulation and pivoting.
 - Exports the final result as `sql_test-expected (Python).xlsx`.
 
