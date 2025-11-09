@@ -77,7 +77,7 @@ mrdiy-junior-data-engineer-assessment/
 ├── 📁 sql/
 │   ├── Data Transformation (SQL).sql             # SQL script with table creation & transformation
 │   ├── sql_test-expected (SQL).csv               # Final output from SQL query (exported)
-│   └── README_SQL.md                             # SQL setup & execution userguide
+│   └── README_SQL.md                             # SQL setup & execution user guide
 │
 ├── 📁 python/
 │   ├── Data Transformation (Python).ipynb        # Python Jupyter Notebook transformation
