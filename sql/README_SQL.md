@@ -78,4 +78,4 @@ All numeric results are rounded to 2 decimal places for consistency with Excel o
 
 In the reference Excel file (`sql_test-expected`), contribution metrics are displayed as percentages (e.g., **45%**).  
 In the SQL output, these same values are represented in decimal form (e.g., **0.45**) to maintain numeric precision during calculations and aggregations.  
-Both formats represent the same underlying values which only the display format differs.
+Both formats represent the same underlying values where only the display format differs.
