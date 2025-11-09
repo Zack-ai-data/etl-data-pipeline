@@ -35,3 +35,9 @@ Metrics calculated:
   Press Shift + Enter for each cell.
 
 The final file sql_output-expected (Python).xlsx will be generated in the same folder.
+
+**Note on metrics**
+In the Excel reference file, contribution metrics are displayed as percentages (e.g., 45%).
+This script outputs them as decimal values (e.g., 0.45) for accurate numeric representation.
+Both formats are equivalent which only the display differs.
+
