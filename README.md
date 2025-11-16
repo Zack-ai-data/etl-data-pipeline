@@ -1,92 +1,213 @@
-# ETL Data Pipeline — SQL & Python Transformations
+# 🛠️ Data Engineering ETL: SQL + Python Transformation Project
 
-This project showcases an end-to-end **ETL data transformation pipeline** built using **SQL** and **Python**, converting a raw retail transaction dataset into an analytical, metric-driven reporting table.
+Transforming raw transactional data into a structured, analysis-ready pivot table using  
+**MySQL** and **Python (Pandas)** — replicating and automating the logic used in Excel.
 
-Both implementations independently process the raw dataset and generate identical outputs validated against a benchmark reference.
+---
+
+## 📌 Table of Contents
+- [🚀 Project Overview](#-project-overview)
+- [🧰 Technologies Used](#-technologies-used)
+- [📂 Dataset Description](#-dataset-description)
+- [1. SQL Data Transformation](#1-sql-data-transformation)
+- [2. Python Data Transformation](#2-python-data-transformation)
+- [📊 Output Format](#-output-format)
+- [📁 Project Structure](#-project-structure)
+- [🔧 How to Reproduce](#-how-to-reproduce)
+- [📢 Notes](#-notes)
 
 ---
 
 ## 🚀 Project Overview
 
-The goal of this project is to:
+This project performs a complete **ETL-style data transformation**, converting raw sales transactions into a pivot table with contribution metrics by:
 
-- Extract and clean raw retail transaction data  
-- Compute key business metrics (profit, contribution ratios, etc.)  
-- Aggregate results into a pivot-style analytical structure  
-- Produce consistent outputs using both SQL and Python pipelines  
+- **Month**
+- **Product**
+- **Category**
 
-This project demonstrates practical data engineering skills including:
+Two separate implementations are provided:
 
-- ETL workflow design  
-- SQL transformation logic  
-- Python (pandas) data manipulation  
-- Pivot table generation  
-- Data validation across multiple pipelines  
+1. **MySQL** — table creation, data loading, transformation & pivoting  
+2. **Python (Pandas)** — replicating the same logic and exporting Excel output
+
+This mirrors a real-world **Data Engineering & Analytics workflow**, suitable for portfolio demonstration.
 
 ---
 
-## 🗂️ Dataset Description
+## 🧰 Technologies Used
 
-**Source file:** `excel_sample_data_de.xlsx`  
-**Sheet:** `sql_test-raw`
-
-| Column | Description |
-|--------|-------------|
-| `month` | Transaction month (Excel date) |
-| `product` | Product name |
-| `store_code` | Store identifier |
-| `category` | Product category |
-| `sales_qty` | Quantity sold |
-| `sales_amt` | Sales revenue |
-| `sales_cost` | Cost of goods sold |
+![MySQL](https://img.shields.io/badge/MySQL-4479A1?logo=mysql&logoColor=white)
+![Python](https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=white)
+![Pandas](https://img.shields.io/badge/Pandas-150458?logo=pandas&logoColor=white)
+![Jupyter](https://img.shields.io/badge/Jupyter-F37626?logo=jupyter&logoColor=white)
 
 ---
 
-## 🔢 Transformation Metrics
+## 📂 Dataset Description
 
-| Metric | Formula |
-|--------|---------|
-| **Profit** | `sales_amt - sales_cost` |
-| **Sales Qty Contribution** | `sales_qty / total monthly sales_qty (category)` |
-| **Sales Amt Contribution** | `sales_amt / total monthly sales_amt (category)` |
-| **Sales Cost Contribution** | `sales_cost / total monthly sales_cost (category)` |
-| **Profit Contribution** | `profit / total monthly profit (category)` |
+The raw dataset contains transaction-level information:
 
-These metrics support category-level performance analysis and comparison across months.
-
----
-
-## 🛢️ SQL Pipeline
-
-- Built using **MySQL**
-- Includes:
-  - Schema & table creation  
-  - Data ingestion  
-  - Metric computation  
-  - Pivot-style transformation  
-- Final output exported as `sql_test-expected (SQL).csv`.
-
-📄 Detailed guide: [`sql/README_SQL.md`](sql/README_SQL.md)
+| Column        | Description |
+|---------------|-------------|
+| month         | Year–month (Jan–Aug 2025) |
+| category      | Product category |
+| product       | Product description |
+| sales_qty     | Units sold |
+| sales_amt     | Total sales amount |
+| sales_cost    | Cost of goods sold |
 
 ---
 
-## 🐍 Python Pipeline
+# 1. SQL Data Transformation
 
-- Implemented in **Jupyter Notebook** using `pandas`
-- Performs:
-  - Data cleaning  
-  - Metric calculations  
-  - Multi-level pivot table generation  
-- Final output exported as `sql_test-expected (Python).xlsx`.
+<details>
+<summary><strong>Click to expand SQL section</strong></summary>
 
-📄 Detailed guide: [`python/README_Python.md`](python/README_Python.md)
+### 📘 Objective  
+Transform the `sql_test-raw` dataset into a pivot-style table (`sql_test-expected`)  
+with calculated contribution metrics per month and category.
+
+Metrics calculated:
+
+1. **Profit** = `sales_amt – sales_cost`  
+2. **Sales Qty Contribution by Category** = `sales_qty / SUM(sales_qty) by (month, category)`  
+3. **Sales Amt Contribution by Category** = `sales_amt / SUM(sales_amt) by (month, category)`  
+4. **Sales Cost Contribution by Category** = `sales_cost / SUM(sales_cost) by (month, category)`  
+5. **Profit Contribution by Category** = `profit / SUM(profit) by (month, category)`  
 
 ---
 
-## 📁 Repository Structure
+### 🧱 Setup Instructions
+
+1. Open MySQL Workbench (or any compatible SQL client)  
+2. Load **Data Transformation (SQL).sql**  
+3. Run sequentially to:
+   - Create tables  
+   - Insert test data  
+   - Compute metrics  
+   - Generate pivot table  
+
+---
+
+### ▶️ Step-by-Step Execution
+
+| Step | Description |
+|------|-------------|
+| 1️⃣ | Create database `mrdiy_test` |
+| 2️⃣ | Drop existing `sql_test_raw` (cleanup) |
+| 3️⃣ | Recreate table structure |
+| 4️⃣ | Insert sample data |
+| 5️⃣ | Validate raw data |
+| 6️⃣ | Disable Safe Update Mode |
+| 7️⃣ | Add profit column |
+| 8️⃣ | Compute profit |
+| 9️⃣ | Add 4 contribution metric columns |
+| 🔟 | Calculate contribution metrics |
+| 1️⃣1️⃣ | Preview final transformed table |
+| 1️⃣2️⃣ | Generate pivot-style output |
+| 1️⃣3️⃣ | Re-enable Safe Update Mode |
+
+---
+
+### 📊 SQL Output
+
+Columns follow this pattern:
 
 ```
-mrdiy-junior-data-engineer-assessment/
+Jan_25_sales_qty_contribution_by_category  
+Jan_25_sales_amt_contribution_by_category  
+Jan_25_sales_cost_contribution_by_category  
+Jan_25_profit_contribution_by_category  
+...
+(repeats Feb–Aug)
+```
+
+---
+
+### ⚙️ Notes
+- Export CSV from Workbench:  
+  *Query → Export Results → CSV*
+- Safe Update Mode handling is included in the SQL file.
+- Values are rounded to **2 decimal places**.
+
+</details>
+
+---
+
+# 2. Python Data Transformation
+
+<details>
+<summary><strong>Click to expand Python section</strong></summary>
+
+### 📘 Objective  
+Replicate the MySQL transformation using **Python + Pandas** and output  
+`sql_output-expected (Python).xlsx`.
+
+---
+
+### 🧱 Setup Instructions
+
+1. Install dependencies:
+
+```bash
+pip install pandas openpyxl jupyter
+```
+
+2. Place `excel_sample_data_de.xlsx` in the working directory  
+3. Open the notebook:
+
+```
+Data Transformation (Python).ipynb
+```
+
+---
+
+### ▶️ Running the Notebook
+
+1. Launch Jupyter Notebook  
+2. Open the `.ipynb` file  
+3. Run all cells (Run All or Shift+Enter)  
+4. Output file generated:
+
+```
+sql_output-expected (Python).xlsx
+```
+
+---
+
+### 📊 Python Metric Format  
+- Calculations use **decimal values** (0.45)  
+- Excel example uses **percentage format** (45%)  
+
+Both represent the same metrics — only display formatting differs.
+
+</details>
+
+---
+
+## 📊 Output Format
+
+The final transformed output contains:
+
+- Wide pivot table  
+- Data grouped by month  
+- 4 metrics per month  
+- Per product × category combination  
+
+Perfect for:
+
+✔️ BI dashboards  
+✔️ Trend analysis  
+✔️ Machine learning features  
+✔️ Reporting automation  
+
+---
+
+## 📁 Project Structure
+
+```
+📦 etl-data-pipeline/
 │
 ├── 📁 data/
 │   └── Section_2_Instructions.md                 # Original Section 2 Instructions from word file provided
@@ -108,24 +229,17 @@ mrdiy-junior-data-engineer-assessment/
 
 ---
 
-## ✔️ Output Consistency
+## 🔧 How to Reproduce
 
-Both SQL and Python pipelines produce **numerically identical results**.
+Clone the repo:
 
-Differences appear only in layout:
+```bash
+git clone https://github.com/<username>/data-engineering-etl.git
+```
 
-| Pipeline | Output Format |
-|---------|----------------|
-| SQL | Flattened columns (e.g. `Jan_25_sales_qty_contribution`) |
-| Python | Multi-index pivot (month grouped above metrics) |
+Follow either:
 
-Contribution values are stored as decimals (e.g., `0.45` = 45%) for precision and interoperability.
+- SQL workflow  
+- Python workflow  
 
----
-
-## 👤 Author
-
-**Zack Chong Zhao Cheng**  
-**Email:** chongzhaocheng06@gmail.com  
-**LinkedIn:** [linkedin.com/in/chong-z-38b102131](https://linkedin.com/in/chong-z-38b102131)
-
+Both produce the same output structure.
