@@ -1,67 +1,85 @@
-# MR D.I.Y. Junior Data Engineer Assessment
-**Candidate:** Chong Zhao Cheng (Zack)  
-**Company:** MR D.I.Y. Trading Sdn Bhd  
-**Section 2:** Technical Knowledge – Data Transformation using SQL & Python
+# ETL Data Pipeline — SQL & Python Transformations
+
+This project showcases an end-to-end **ETL data transformation pipeline** built using **SQL** and **Python**, converting a raw retail transaction dataset into an analytical, metric-driven reporting table.
+
+Both implementations independently process the raw dataset and generate identical outputs validated against a benchmark reference.
 
 ---
 
-## Overview & Objective
-This repository contains the deliverables for the SQL and Python technical assessment.
-Both implementations independently transform the raw dataset (`sql_test-raw`) into the final expected output (`sql_test-expected`),
-calculating the required business metrics and presenting them in a structured pivot-style format.
+## 🚀 Project Overview
+
+The goal of this project is to:
+
+- Extract and clean raw retail transaction data  
+- Compute key business metrics (profit, contribution ratios, etc.)  
+- Aggregate results into a pivot-style analytical structure  
+- Produce consistent outputs using both SQL and Python pipelines  
+
+This project demonstrates practical data engineering skills including:
+
+- ETL workflow design  
+- SQL transformation logic  
+- Python (pandas) data manipulation  
+- Pivot table generation  
+- Data validation across multiple pipelines  
 
 ---
 
 ## 🗂️ Dataset Description
 
-**Input file:** `excel_sample_data_de.xlsx`  
+**Source file:** `excel_sample_data_de.xlsx`  
 **Sheet:** `sql_test-raw`
 
-| Column Name | Description |
-|--------------|-------------|
-| `month` | Transaction month (in Excel date format displayed as `Jan-25`) |
+| Column | Description |
+|--------|-------------|
+| `month` | Transaction month (Excel date) |
 | `product` | Product name |
 | `store_code` | Store identifier |
-| `category` | Product category (e.g. Beverage, Snack, Dairy) |
+| `category` | Product category |
 | `sales_qty` | Quantity sold |
-| `sales_amt` | Total sales amount |
-| `sales_cost` | Total cost of sales |
+| `sales_amt` | Sales revenue |
+| `sales_cost` | Cost of goods sold |
 
 ---
 
-## Key Transformation Metrics
+## 🔢 Transformation Metrics
 
-| Metric | Formula | Description |
-|--------|----------|-------------|
-| **Profit** | `sales_amt - sales_cost` | Calculates profit per product |
-| **Sales Qty Contribution by Category** | `sales_qty / total monthly sales_qty (by category)` | Product’s quantity contribution |
-| **Sales Amt Contribution by Category** | `sales_amt / total monthly sales_amt (by category)` | Product’s revenue contribution |
-| **Sales Cost Contribution by Category** | `sales_cost / total monthly sales_cost (by category)` | Product’s cost contribution |
-| **Profit Contribution by Category** | `profit / total monthly profit (by category)` | Product’s profit share |
+| Metric | Formula |
+|--------|---------|
+| **Profit** | `sales_amt - sales_cost` |
+| **Sales Qty Contribution** | `sales_qty / total monthly sales_qty (category)` |
+| **Sales Amt Contribution** | `sales_amt / total monthly sales_amt (category)` |
+| **Sales Cost Contribution** | `sales_cost / total monthly sales_cost (category)` |
+| **Profit Contribution** | `profit / total monthly profit (category)` |
+
+These metrics support category-level performance analysis and comparison across months.
 
 ---
 
-## SQL Transformation
+## 🛢️ SQL Pipeline
 
-- Implemented using **MySQL** [Data Transformation (SQL).sql](sql/Data%20Transformation%20(SQL).sql).
-- Script includes:
-  - Database & table creation  
-  - Data insertion  
+- Built using **MySQL**
+- Includes:
+  - Schema & table creation  
+  - Data ingestion  
   - Metric computation  
-  - Pivot-style aggregation by month and metric  
+  - Pivot-style transformation  
 - Final output exported as `sql_test-expected (SQL).csv`.
 
-**NOTE:** Refer to [README_SQL.md](sql/README_SQL.md) for detailed setup and execution steps.
+📄 Detailed guide: [`sql/README_SQL.md`](sql/README_SQL.md)
 
 ---
 
-## Python Transformation
+## 🐍 Python Pipeline
 
-- Implemented in **Jupyter Notebook** [Data Transformation (Python).ipynb](python/Data%20Transformation%20(Python).ipynb).
-- Uses **pandas** for data manipulation and pivoting.
-- Exports the final result as `sql_test-expected (Python).xlsx`.
+- Implemented in **Jupyter Notebook** using `pandas`
+- Performs:
+  - Data cleaning  
+  - Metric calculations  
+  - Multi-level pivot table generation  
+- Final output exported as `sql_test-expected (Python).xlsx`.
 
-**NOTE:** Refer to [README_Python.md](python/README_Python.md) for detailed setup and execution steps.
+📄 Detailed guide: [`python/README_Python.md`](python/README_Python.md)
 
 ---
 
@@ -90,63 +108,24 @@ mrdiy-junior-data-engineer-assessment/
 
 ---
 
-## ⚙️ Clarifications on Metrics
+## ✔️ Output Consistency
 
-Although the assessment requirements listed four metrics
-(profit, sales qty contribution by category, sales amt contribution by category, profit contribution by category),
-the provided reference output (`sql_test-expected` in *excel_sample_data_de.xlsx*) also included **Sales Cost Contribution by Category**.
-Therefore, both SQL and Python implementations include this additional metric for completeness and alignment with the expected output.
+Both SQL and Python pipelines produce **numerically identical results**.
 
-> The original assessment brief listed four required metrics:
-> 1. Profit  
-> 2. Sales Qty Contribution by Category  
-> 3. Sales Amt Contribution by Category  
-> 4. Profit Contribution by Category  
->
-> To ensure consistency with the expected Excel reference and maintain calculation integrity, an additional metric was implemented:
-> 
-> 5. Sales Cost Contribution by Category
+Differences appear only in layout:
 
-✅ This ensures all transformation outputs (SQL and Python) fully match the provided reference file and maintain consistency across all methods.
+| Pipeline | Output Format |
+|---------|----------------|
+| SQL | Flattened columns (e.g. `Jan_25_sales_qty_contribution`) |
+| Python | Multi-index pivot (month grouped above metrics) |
+
+Contribution values are stored as decimals (e.g., `0.45` = 45%) for precision and interoperability.
 
 ---
 
-## 🧾 Output Format Note
+## 👤 Author
 
-Both SQL and Python outputs contain the same values and correct metric order,
-but differ slightly in table layout due to the formatting behavior of each platform.
-
-| Implementation | Output Format | Example |
-|--------|----------|-------------|
-| SQL | Flattened columns | Jan_25_sales_qty_contribution_by_category, Feb_25_... |
-| Python | Multi-level pivot (month grouped above metrics) | Jan-25 → [sales_qty, sales_amt, sales_cost, profit] |
-
-✅ All calculated values have been verified identical to the reference (`sql_test-expected`).
-Only the visual structure differs where the underlying logic and results remain consistent.
-
-> Percentage Display Clarification
-> In the provided Excel reference (`sql_test-expected`), contribution metrics are displayed as percentages (e.g., 45%).
-> In both SQL and Python outputs, these values are represented in decimal form (e.g., 0.45).
-> The numerical values are equivalent where only the formatting differs.
-
-✅ This approach preserves numeric precision during computation and ensures accurate comparisons across systems.
-
----
-
-## 📤 Submission Details
-
-- **Excel Section:** Completed directly in the provided Excel file  
-- **Technical Section (SQL & Python):** Hosted in this GitHub repository  
-- **Aptitude Section:** Completed in the provided Word document  
-
-For clarification or review, please refer to this repository or contact me directly.
-
----
-
-## 👤 Author Information
-
-**Name:** Zack Chong Zhao Cheng  
+**Zack Chong Zhao Cheng**  
 **Email:** chongzhaocheng06@gmail.com  
-**Education:** B.Sc. (Hons) Statistical Data Modelling — Sunway University  
-**Date Submitted:** 9th November 2025  
-**LinkedIn:** [LinkedIn Profile](http://linkedin.com/in/chong-z-38b102131)
+**LinkedIn:** [linkedin.com/in/chong-z-38b102131](https://linkedin.com/in/chong-z-38b102131)
+
