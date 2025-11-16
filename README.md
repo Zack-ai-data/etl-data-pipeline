@@ -208,23 +208,22 @@ Perfect for:
 
 ```
 📦 etl-data-pipeline/
+├── data
+│   └── excel_sample_data_de.xlsx
 │
-├── 📁 data/
-│   └── Section_2_Instructions.md                 # Original Section 2 Instructions from word file provided
-|   └── excel_sample_data_de.xlsx                 # Original dataset provided
+├── output
+│   ├── sql_test-expected (Python).xlsx
+│   └── sql_test-expected (SQL).csv
 │
-├── 📁 sql/
-│   ├── Data Transformation (SQL).sql             # SQL script with table creation & transformation
-│   ├── sql_test-expected (SQL).csv               # Final output from SQL query (exported)
-│   └── README_SQL.md                             # SQL setup & execution user guide
+├── python
+│   └── Data Transformation (Python).ipynb
 │
-├── 📁 python/
-│   ├── Data Transformation (Python).ipynb        # Python Jupyter Notebook transformation
-│   ├── sql_test-expected (Python).xlsx           # Final output from Python pivot table
-│   └── README_Python.md                          # Python setup & execution user guide
+├── sql
+│   └── Data Transformation (SQL).sql
 │
-└── README.md                                     # Main overview file 
-└── LICENSE                                       # MIT License
+├── DETAILED_STEPS.md
+├── README.md
+└── LICENSE
 ```
 
 ---
